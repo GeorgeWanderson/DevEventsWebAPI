@@ -38,6 +38,7 @@ namespace DevEvents.API.Controllers
         public IActionResult Post(Evento evento)
         {
             _contexto.Eventos.Add(evento);
+            _contexto.SaveChanges();
             return CreatedAtAction(nameof(GetById), new { id = evento.Id }, evento);
         }
 
@@ -52,7 +53,11 @@ namespace DevEvents.API.Controllers
                 return NotFound();
             }
             eventoExistente.Update(evento.Titulo, evento.Descricao, evento.DataInicio, evento.DataFim);
-            return Ok();
+
+            _contexto.Eventos.Update(eventoExistente);
+            _contexto.SaveChanges();
+
+            return NoContent();
         }
 
         // DELETE api/eventos/1
@@ -66,6 +71,8 @@ namespace DevEvents.API.Controllers
                 return NotFound();
             }
             _contexto.Eventos.Remove(evento);
+            _contexto.SaveChanges();
+
             return NoContent();
         }
 

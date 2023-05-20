@@ -2,9 +2,8 @@
 {
     public class Evento
     {
-        public Evento(int id, string titulo, string descricao, DateTime dataInicio, DateTime dataFim, string organizador, DateTime dataCriacao)
+        public Evento(string titulo, string descricao, DateTime dataInicio, DateTime dataFim, string organizador, DateTime dataCriacao)
         {
-            Id = id;
             Titulo = titulo;
             Descricao = descricao;
             DataInicio = dataInicio;
