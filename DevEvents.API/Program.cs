@@ -7,8 +7,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 //builder.Services.AddSingleton<EventosDbContext>();
 
+
+// Utilizando o EFCore com o InMemory
+//builder.Services.AddDbContext<EventosDbContext>(
+//    o => o.UseInMemoryDatabase("DevEventosDb")
+//);
+
+
+// Utilizando o EFCore com SQL Server
+var connectionString = builder.Configuration.GetConnectionString("DevEventos");
 builder.Services.AddDbContext<EventosDbContext>(
-    o => o.UseInMemoryDatabase("DevEventosDb")
+    o => o.UseSqlServer(connectionString)
 );
 
 builder.Services.AddControllers();
